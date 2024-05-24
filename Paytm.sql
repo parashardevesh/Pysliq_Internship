@@ -11,8 +11,7 @@ ORDER BY Orders DESC
 LIMIT 5;
 
 -- Q-3 Show me a table with all the data for products that belong to the "Electronics" category.
--- there is no electronics category in our dataset
--- we have wathces that may fall in this category
+-- there is no electronics category in our dataset but we have wathces that may fall in this category
 SELECT *
 FROM paytm
 WHERE class = 'WATCHES';
@@ -31,8 +30,7 @@ ORDER BY item_price DESC;
 
 -- Q-6 Apply conditional formatting to highlight all products with a "Special_Price_effective" value below $50 in red. 
 
--- Q-7 Create a pivot table to find the total sales value for each category.
--- calculated total sales for each category using sql query
+-- Q-7 Create a pivot table to find the total sales value for each category. 
 SELECT category, SUM(paid_pr*quantity) as total_sales
 FROM paytm
 GROUP BY category
@@ -47,14 +45,12 @@ WHERE category_grouped = 'Apparels' AND sale_flag = 'On Sale'
 GROUP BY product_gender;
 
 -- Q-10 Find the top 5 products with the highest "Value_CM1" and "Value_CM2" ratios. 
--- Q-10 Create a chart to visualize this data.
 SELECT item_nm as Item_Name, sub_category, category, (value_cm1 / value_cm2) AS top_5_ratio
 FROM paytm
 ORDER BY top_5_ratio DESC
 LIMIT 5;
 
--- Q-11 Identify the top 3 "Class" categories with the highest total sales. Create a stacked
--- bar chart to represent this data.
+-- Q-11 Identify the top 3 "Class" categories with the highest total sales.
 SELECT class AS top_3_class, SUM(quantity) AS total_sales
 FROM paytm
 WHERE class IS NOT NULL
@@ -70,15 +66,13 @@ ORDER BY total_sales DESC
 LIMIT 3;
 
 -- Q-13 Calculate the total revenue generated from "Electronics" category products with a "Sale_Flag" of 'Yes'.
- -- no electronic product in our dataset
- -- since wathces may be electronic hence calculating for watches
+ -- no electronic product in our dataset, only watches may be electronic, hence calculating for watches
 SELECT class, SUM(paid_pr*quantity) AS total_revenue
 FROM paytm
 WHERE class = 'WATCHES' AND Sale_Flag = 'On Sale'
 GROUP BY class;
 
--- Q-14 Identify the top 5 shipping cities based on the average order value (total sales
--- amount divided by the number of orders) and display their average order values.
+-- Q-14 Identify the top 5 shipping cities based on the average order value (total sales amount divided by the number of orders) and display their average order values.
 SELECT shipping_city, SUM(quantity*paid_pr)/ SUM(quantity) AS avg_order
 FROM paytm
 GROUP BY shipping_city
@@ -86,8 +80,7 @@ ORDER BY avg_order DESC
 LIMIT 5; 
 
 
---Q -15 Determine the total number of orders and the total sales amount for each
--- "Product_Gender" within the "Clothing" category.
+--Q -15 Determine the total number of orders and the total sales amount for each "Product_Gender" within the "Clothing" category.
 SELECT product_gender, SUM(quantity) AS total_orders, SUM(quantity*paid_pr) AS total_sales
 FROM paytm
 WHERE category_grouped = 'Apparels'
@@ -103,17 +96,15 @@ FROM paytm
 GROUP BY category; 
 
 -- Q-17 Identify the "Category" with the highest average "Item_Price" and its corresponding average price.
-
 SELECT category, ROUND(AVG(item_price), 2) AS highest_average
 FROM paytm
 GROUP BY category
 ORDER BY highest_average DESC
 LIMIT 1;
 
--- Q-18 Find the month with the highest total sales revenue.
--- there is no date column in our dataset 
+-- Q-18 Find the month with the highest total sales revenue. 
 -- i have written a query on how to find the month with highest sales revenue
--- this query will not work for our dataset since there is no date column
+-- since there is no date column in our dataset this query will not work though
 SELECT MONTH(order_date) AS month, SUM(paid_pr * quantity) as total_sales_revenue
 FROM paytm
 GROUP BY month

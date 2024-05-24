@@ -10,8 +10,7 @@ FROM general;
 SELECT ROUND(AVG(age), 2) as emp_average_age
 FROM general;
 
--- Q-4 Retrieve the names and ages of employees who have worked at the company for more
--- than 5 years.
+-- Q-4 Retrieve the names and ages of employees who have worked at the company for more than 5 years.
 SELECT "Emp Name" as emp_name, age, yearsatcompany
 FROM general
 WHERE yearsatcompany>5
@@ -45,8 +44,7 @@ WHERE businesstravel = 'Travel_Rarely';
 SELECT DISTINCT MaritalStatus
 FROM general;
 
---Q-10 Get a list of employees with more than 2 years of work experience but less than 4 years in
--- their current role.
+--Q-10 Get a list of employees with more than 2 years of work experience but less than 4 years in their current role.
 SELECT employeeid, 
     "Emp Name" AS emp_with3yrs_WorkEx, 
     jobrole
@@ -55,8 +53,7 @@ WHERE yearsatcompany = 3
 GROUP BY jobrole, "Emp Name", employeeid
 ORDER BY employeeid; 
 
--- Q-11 List employees who have changed their job roles within the company (JobLevel and
--- JobRole differ from their previous job).
+-- Q-11 List employees who have changed their job roles within the company (JobLevel and JobRole differ from their previous job).
 SELECT EmployeeID, "Emp Name",
     CurrentJobRole, PreviousJobRole, 
     CurrentJobLevel, PreviousJobLevel
@@ -126,8 +123,7 @@ ORDER BY JobRole, MaritalStatus;
    
 
 
--- Q-17 List the employees with the highest TotalWorkingYears who also have a
--- PerformanceRating of 4.
+-- Q-17 List the employees with the highest TotalWorkingYears who also have a PerformanceRating of 4.
 SELECT g."Emp Name", m.performancerating, g.totalworkingyears
 FROM general AS g
 LEFT JOIN managersurvey as m
@@ -166,8 +162,7 @@ GROUP BY educationfield
 ORDER BY Frequency DESC
 LIMIT 1;
 
--- Q-20 List the employees who have worked for the company the longest but haven't had a
--- promotion.
+-- Q-20 List the employees who have worked for the company the longest but haven't had a promotion.
 SELECT "Emp Name", yearsatcompany, yearssincelastpromotion
 FROM general
 WHERE yearssincelastpromotion = 0 AND 

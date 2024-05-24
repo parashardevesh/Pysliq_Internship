@@ -47,9 +47,7 @@ SELECT "Sub-channel", ROUND(AVG(Price)) AS products_avg_price
 FROM pharma
 GROUP BY "Sub-channel";
 
--- Q-11 Join the 'Employees' table with the 'Sales' table to get the name of the Sales Rep 
--- and the corresponding sales records.
--- Only one table available, also without joining it can be solved
+-- Q-11 Join the 'Employees' table with the 'Sales' table to get the name of the Sales Rep and the corresponding sales records.
 SELECT "Name of Sales Rep", ROUND(SUM("Sales") / 1000000) AS "total_sales (in millions)"
 FROM pharma
 GROUP BY "Name of Sales Rep";
@@ -60,8 +58,7 @@ FROM pharma
 WHERE city = 'Rendsburg' AND Year = 2018
 GROUP BY "Name of Sales Rep", City, Year;
 
--- Q-13 Calculate the total sales for each product class, for each month, 
--- and order the results by year, month, and product class.
+-- Q-13 Calculate the total sales for each product class, for each month, and order the results by year, month, and product class.
 SELECT "Product Class", month, year, 
     ROUND(SUM(sales) / 1000000) AS "Total_sales (in millions)"
 FROM pharma
@@ -77,8 +74,7 @@ GROUP BY Top_3_Sales_Representative
 ORDER BY "Total_sales (in millions)" DESC
 LIMIT 3;
 
--- Q-15 Calculate the monthly total sales for each sub-channel, 
--- and then calculate the average monthly sales for each sub-channel over the years.
+-- Q-15 Calculate the monthly total sales for each sub-channel, and then calculate the average monthly sales for each sub-channel over the years.
 SELECT "Sub-channel", Month, Year, 
     ROUND(SUM(sales) / 1000000) AS "Total_Sales (in millions)",
     ROUND(AVG(sales) / 1000) AS "Avg_Sales (in thousands)"
@@ -86,8 +82,7 @@ FROM pharma
 GROUP BY "Sub-channel", Year, Month
 ORDER BY Year, Month, "Total_Sales (in millions)" DESC;
 
--- Q-16 Create a summary report that includes the total sales, average price, 
--- and total quantity sold for each product class.
+-- Q-16 Create a summary report that includes the total sales, average price, and total quantity sold for each product class.
 SELECT "Product Class", ROUND(SUM(sales) / 1000000000, 2) AS "Total_sales (in billions)",
     ROUND(AVG(Price), 2) AS Average_price,
     ROUND(SUM(Quantity) / 1000000, 2) AS "Total_quantity (in millions)"
@@ -126,8 +121,7 @@ SELECT year, month, ROUND(lowest_sales / 1000000, 2) AS "lowest_sales (in millio
 FROM low_sales_per_year
 WHERE rn=1;
 
--- Q-20 Calculate the total sales for each sub-channel in each country, 
--- and then find the country with the highest total sales for each sub-channel.
+-- Q-20 Calculate the total sales for each sub-channel in each country, and then find the country with the highest total sales for each sub-channel.
 SELECT country, "sub-channel", ROUND(total_sales / 1000000000, 3) AS "total_sales (in billions)"
 FROM 
     (
